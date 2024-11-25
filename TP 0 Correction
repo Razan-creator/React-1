@@ -1,0 +1,326 @@
+
+
+
+//Exercice 1 : 
+
+
+// Définition de la classe Student
+class Student {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        this.grades = []; // Tableau de notes initialisé vide
+    }
+
+    // Méthode pour ajouter une note
+    addGrade(grade) {
+        this.grades.push(grade);
+    }
+
+    // Méthode pour calculer la moyenne des notes
+    getAverageGrade() {
+        if (this.grades.length === 0) return 0; // Évite la division par 0
+        const sum = this.grades.reduce((acc, curr) => acc + curr, 0);
+        return sum / this.grades.length;
+    }
+}
+
+// Création de plusieurs instances de Student
+const students = [
+    new Student("Alice", 20),
+    new Student("Bob", 22),
+    new Student("Charlie", 19)
+];
+
+// Ajout de notes aux étudiants
+students[0].addGrade(85);
+students[0].addGrade(90);
+students[1].addGrade(78);
+students[1].addGrade(82);
+students[2].addGrade(95);
+students[2].addGrade(88);
+
+// Affichage du nom et de la moyenne de chaque étudiant
+students.forEach(student => {
+    console.log(`${student.name}: Moyenne = ${student.getAverageGrade().toFixed(2)}`);
+});
+
+
+
+
+
+
+
+
+//Exercice 2 : 
+
+// Définition de la classe Book
+class Book {
+    constructor(title, author, year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
+}
+
+// Définition de la classe Library
+class Library {
+    constructor() {
+        this.books = []; // Tableau de livres
+    }
+
+    // Méthode pour ajouter un livre
+    addBook(book) {
+        this.books.push(book);
+    }
+
+    // Méthode pour trouver les livres par auteur
+    findBooksByAuthor(author) {
+        return this.books.filter(book => book.author === author);
+    }
+}
+
+// Création de la bibliothèque et ajout de livres
+const library = new Library();
+library.addBook(new Book("1984", "George Orwell", 1949));
+library.addBook(new Book("Animal Farm", "George Orwell", 1945));
+library.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925));
+
+// Recherche de livres par auteur
+const orwellBooks = library.findBooksByAuthor("George Orwell");
+console.log("Livres de George Orwell :");
+orwellBooks.forEach(book => console.log(`${book.title} (${book.year})`));
+
+
+
+
+
+
+
+
+
+//Exercice 3 : 
+
+
+// Définition de la classe Product
+class Product {
+    constructor(name, price, category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
+}
+
+// Définition de la classe Store
+class Store {
+    constructor() {
+        this.inventory = []; // Tableau contenant les produits
+    }
+
+    // Méthode pour ajouter un produit
+    addProduct(product) {
+        this.inventory.push(product);
+    }
+
+    // Méthode pour filtrer les produits par catégorie
+    filterByCategory(category) {
+        return this.inventory.filter(product => product.category === category);
+    }
+
+    // Méthode pour calculer la valeur totale de l'inventaire
+    calculateTotalInventoryValue() {
+        return this.inventory.reduce((total, product) => total + product.price, 0);
+    }
+}
+
+// Création d'un magasin et ajout de produits
+const store = new Store();
+store.addProduct(new Product("Laptop", 1200, "Electronics"));
+store.addProduct(new Product("Phone", 800, "Electronics"));
+store.addProduct(new Product("Chair", 150, "Furniture"));
+store.addProduct(new Product("Table", 300, "Furniture"));
+store.addProduct(new Product("Headphones", 100, "Electronics"));
+
+// Test de la méthode filterByCategory
+console.log("Produits dans la catégorie 'Electronics' :");
+store.filterByCategory("Electronics").forEach(product => {
+    console.log(`${product.name} - $${product.price}`);
+});
+
+// Test de la méthode calculateTotalInventoryValue
+const totalValue = store.calculateTotalInventoryValue();
+console.log(`Valeur' totale de l'inventaire : $${totalValue}`);
+
+
+
+
+
+
+
+
+
+// Exercice 4 :
+
+
+const monthlySales = [1200, 1500, 1700, 1300, 2100, 800, 900, 1800, 1900, 2500, 2300, 1600];
+
+// 1. Fonction pour calculer le total des ventes
+function calculateTotalSales(sales) {
+    return sales.reduce((total, sale) => total + sale, 0);
+}
+
+// 2. Fonction pour calculer la moyenne des ventes mensuelles
+function calculateAverageSales(sales) {
+    return calculateTotalSales(sales) / sales.length;
+}
+
+// 3. Fonction pour trouver le mois avec les meilleures ventes
+function findBestMonth(sales) {
+    const maxSale = Math.max(...sales);
+    return sales.indexOf(maxSale) + 1; // +1 pour obtenir le numéro du mois (1-12)
+}
+
+// 4. Fonction pour filtrer les mois avec des ventes inférieures à un seuil
+function filterLowMonths(sales, threshold) {
+    return sales.filter(sale => sale < threshold);
+}
+
+// 5. Fonction pour calculer la croissance mensuelle
+function calculateMonthlyGrowth(sales) {
+    const growth = [];
+    for (let i = 1; i < sales.length; i++) {
+        growth.push(sales[i] - sales[i - 1]);
+    }
+    return growth;
+}
+
+// Tests
+console.log("Total des ventes :", calculateTotalSales(monthlySales));
+console.log("Moyenne des ventes mensuelles :", calculateAverageSales(monthlySales));
+console.log("Mois avec les meilleures ventes :", findBestMonth(monthlySales));
+console.log("Mois avec des ventes inférieures à 1500 :", filterLowMonths(monthlySales, 1500));
+console.log("Croissance mensuelle :", calculateMonthlyGrowth(monthlySales));
+
+
+
+
+
+
+
+// Exercice 5 :
+
+
+const grades = [12, 8, 15, 18, 10, 14, 9, 13, 17, 7, 20];
+
+// 1. Fonction pour trouver la note maximale
+function findMaxGrade(grades) {
+    return Math.max(...grades);
+}
+
+// 2. Fonction pour trouver la note minimale
+function findMinGrade(grades) {
+    return Math.min(...grades);
+}
+
+// 3. Fonction pour calculer la moyenne des notes
+function calculateAverageGrade(grades) {
+    return grades.reduce((total, grade) => total + grade, 0) / grades.length;
+}
+
+// 4. Fonction pour trier les notes dans l'ordre croissant
+function sortGrades(grades) {
+    return [...grades].sort((a, b) => a - b); // Utilisation d'une copie pour éviter de modifier l'original
+}
+
+// 5. Fonction pour filtrer les notes au-dessus d'une note de passage
+function filterPassingGrades(grades, passingGrade) {
+    return grades.filter(grade => grade >= passingGrade);
+}
+
+// 6. Fonction pour ajouter une note
+function addGrade(grades, newGrade) {
+    grades.push(newGrade);
+    return grades;
+}
+
+// 7. Fonction pour supprimer une note
+function removeGrade(grades, gradeToRemove) {
+    const index = grades.indexOf(gradeToRemove);
+    if (index !== -1) {
+        grades.splice(index, 1);
+    }
+    return grades;
+}
+
+// Tests
+console.log("Note maximale :", findMaxGrade(grades));
+console.log("Note minimale :", findMinGrade(grades));
+console.log("Moyenne des notes :", calculateAverageGrade(grades));
+console.log("Notes triées :", sortGrades(grades));
+console.log("Notes supérieures ou égales à 10 :", filterPassingGrades(grades, 10));
+console.log("Ajout de la note 16 :", addGrade(grades, 16));
+console.log("Suppression de la note 8 :", removeGrade(grades, 8));
+
+
+
+
+
+
+
+
+
+
+//Exercice 6 : 
+
+
+const inventory = [
+    { name: "Apple", quantity: 50, price: 0.5 },
+    { name: "Banana", quantity: 30, price: 0.2 },
+    { name: "Orange", quantity: 20, price: 0.8 },
+    { name: "Mango", quantity: 15, price: 1.5 },
+    { name: "Grapes", quantity: 40, price: 1.0 }
+];
+
+// 1. Calculer la valeur totale de l'inventaire
+function calculateTotalValue(inventory) {
+    return inventory.reduce((total, product) => total + (product.quantity * product.price), 0);
+}
+
+// 2. Trier le tableau par ordre croissant de la quantité
+function sortByQuantity(inventory) {
+    return [...inventory].sort((a, b) => a.quantity - b.quantity); // Copie pour éviter la mutation
+}
+
+// 3. Filtrer les produits avec une quantité inférieure à un seuil
+function filterLowStock(inventory, threshold) {
+    return inventory.filter(product => product.quantity < threshold);
+}
+
+// 4. Augmenter la quantité d’un produit spécifique
+function restockProduct(inventory, productName, amount) {
+    const product = inventory.find(item => item.name === productName);
+    if (product) {
+        product.quantity += amount;
+    }
+    return inventory;
+}
+
+// 5. Trouver le produit le plus cher
+function findMostExpensiveProduct(inventory) {
+    return inventory.reduce((mostExpensive, product) => {
+        return product.price > mostExpensive.price ? product : mostExpensive;
+    }, inventory[0]);
+}
+
+// 6. Supprimer les produits avec une quantité de 0
+function removeOutOfStockProducts(inventory) {
+    return inventory.filter(product => product.quantity > 0);
+}
+
+// Tests
+console.log("Valeur totale de l'inventaire :", calculateTotalValue(inventory));
+console.log("Produits triés par quantité :", sortByQuantity(inventory));
+console.log("Produits avec un stock inférieur à 25 :", filterLowStock(inventory, 25));
+console.log("Réapprovisionnement de 'Mango' de 10 unités :", restockProduct(inventory, "Mango", 10));
+console.log("Produit le plus cher :", findMostExpensiveProduct(inventory));
+console.log("Produits en stock :", removeOutOfStockProducts(inventory));
