@@ -1,0 +1,56 @@
+// import React from "react";
+import "./App.css"; // Importation des styles CSS
+
+const Profile = () => {
+  return (
+    <div className="profile-container">
+      <header className="profile-header">
+        <h1>Student Profile</h1>
+        <p>A responsive profile design example</p>
+      </header>
+
+      <div className="profile-content">
+        {/* Profile section */}
+        <div className="profile-card">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Profile"
+            className="profile-image"
+          />
+          <h3 className="profile-name">Fyodor Dostoevsky</h3>
+          <hr />
+          <p>Student ID: 32100001</p>
+          <p>Class: 4</p>
+          <p>Section: A</p>
+        </div>
+
+        {/* General Info */}
+        <div className="info-card">
+          <h3>General Information</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>Roll</td>
+                <td>: 125</td>
+              </tr>
+              <tr>
+                <td>Academic Year</td>
+                <td>: 1990</td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td>: Male</td>
+              </tr>
+              <tr>
+                <td>Blood</td>
+                <td>: B+</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
